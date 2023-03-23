@@ -1,3 +1,4 @@
+import { AutoFastForward } from "./module/auto-fastforward.js";
 import { patchHelper } from "./module/patch.js";
 
 Hooks.on("init", function () {
@@ -20,7 +21,7 @@ Hooks.on("ready", function () {
 
     const autoFastForward = game.settings.get("auto-fastforward", "autoFastForward");
     if (autoFastForward) {
-        console.log("Patching");
+        AutoFastForward.log("Patching Helper.isUsingFastForwardKey");
         libWrapper.register("auto-fastforward", "game.helper.isUsingFastForwardKey", patchHelper, 'WRAPPER');
     }
 
