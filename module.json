@@ -1,0 +1,24 @@
+{
+	"id": "auto-fastforward",
+	"name": "auto-fastforward",
+	"title": "Auto FastForward",
+	"description": "Small Module that allows GMs to reverse the base functionality so that fastforward is the default and mod keys (SHIFT, CRTL, ALT, META)",
+	"version": "0.0.0",
+	"author": "Poketch",
+	"authors": [{
+		"name": "Poketch",
+		"url": "https://github.com/poketch"
+	}],
+	"esmodules": ["auto-fastforward.js"],
+	"minimumCoreVersion": "9.238",
+	"compatibleCoreVersion": "9",
+	"compatibility": {
+		"minimum": "9.238",
+		"verified": "9"
+	},
+	"url": "https://github.com/poketch/auto-fastforawd-4e",
+	"bugs": "https://github.com/poketch/auto-fastforawd-4e/issues",
+	"languages": [
+		{ "lang": "en", "name": "English", "path": "lang/en.json" }
+	]
+}
