@@ -1,35 +1,35 @@
 
-name: Module Release
+name: Release Module
 
-on:
-  push: 
+on: 
+  push:
     branches:
       - master
 
 jobs:
   build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
+   runs-on: ubuntu-latest
+   steps:
+    - uses: actions/checkout@v3
 
-        name: Get-Version
-        working-directory: ./
-        run: echo "::set-output name=version::$(node ./.github/workflows/get-version.js)"
-        shell: bash
-        id: get-version
+    - name: Get Version
+      id: get-version
+      run: echo "::set-output name=version::$(node ./.github/workflows/get-version.js)"
+      shell: bash
 
-        name: Zip-Files
-        id: zip-files
-        run: zip -r module.zip ./lang ./module ./auto-fastforward.js LICENSE module.json
+    - name: Zip
+      id: zip
+      working-directory: ./
+      run: zip -r ./module-v${{steps.get-version.outputs.version}}.zip ./lang ./module ./LICENSE ./auto-fastforward.js ./module.js
 
-        name: Create-Release
-        id: create-relase
-        uses: ncipollo/release-action@v1
-        with: 
-          allowUpdates: true
-          name: Release ${{ steps.get-version.outputs.version }}
-          draft: false
-          prerelease: false
-          token: ${{secrets.GITHUB_TOKEN}}
-          artifacts: ./module.json module-v${{ steps.get-version.outputs.version }}.zip
-          tag: ${{ steps.get-version.outputs.version }}
+    - name: Release 
+      id: release
+      uses: ncipollo/release-action@v1
+      with:
+        allowUpdates: true
+        name: Release v${{steps.get-version.outputs.version}}
+        draft: false
+        prerelease: false
+        token: ${{secrets.GITHUB_TOKEN}}
+        tag: ${{steps.get-version.outputs.version}}
+
