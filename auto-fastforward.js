@@ -9,6 +9,7 @@ Hooks.on("init", function () {
         scope: "world",
         config: true,
         type: Boolean,
+        default: false,
         onChange: debouncedReload,
     
     });
@@ -17,8 +18,10 @@ Hooks.on("init", function () {
 
 Hooks.on("ready", function () {
 
-    console.log("Patching");
-    libWrapper.register("auto-fastforward", "game.helper.isUsingFastForwardKey", patchHelper, 'WRAPPER');
-
+    const autoFastForward = game.settings.get("auto-fastforward", "autoFastForward");
+    if (autoFastForward) {
+        console.log("Patching");
+        libWrapper.register("auto-fastforward", "game.helper.isUsingFastForwardKey", patchHelper, 'WRAPPER');
+    }
 
 });
