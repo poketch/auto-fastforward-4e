@@ -3,7 +3,7 @@
 	"name": "auto-fastforward",
 	"title": "Auto FastForward",
 	"description": "Small Module that allows GMs to reverse the base functionality so that fastforward is the default and mod keys (SHIFT, CRTL, ALT, META)",
-	"version": "0.1.0",
+	"version": "0.2.0",
 	"author": "Poketch",
 	"authors": [{
 		"name": "Poketch",

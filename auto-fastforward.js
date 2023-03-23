@@ -1,9 +1,6 @@
+import { patchHelper } from "./module/patch.js";
 
 Hooks.on("init", function () {
-
-
-
-
 
     const debouncedReload = foundry.utils.debounce( () => window.location.reload(), 100 );    
     game.settings.register("auto-fastforward", "autoFastForward", {
@@ -15,5 +12,13 @@ Hooks.on("init", function () {
         onChange: debouncedReload,
     
     });
+
+});
+
+Hooks.on("ready", function () {
+
+    console.log("Patching");
+    libWrapper.register("auto-fastforward", "game.helper.isUsingFastForwardKey", patchHelper, 'WRAPPER');
+
 
 });
