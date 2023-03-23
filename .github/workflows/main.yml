@@ -14,22 +14,22 @@ jobs:
 
     - name: Get Version
       id: get-version
-      run: echo "::set-output name=version::$(node ./.github/workflows/get-version.js)"
+      run: echo  "version=$(node ./.github/workflows/get-version.js)" >> $GITHUB_OUTPUT
       shell: bash
 
     - name: Zip
       id: zip
       working-directory: ./
-      run: zip -r ./module-v${{steps.get-version.outputs.version}}.zip ./lang ./module ./LICENSE ./auto-fastforward.js ./module.js
+      run: zip -r ./module-v${{steps.get-version.outputs.version}}.zip ./lang ./module ./LICENSE ./auto-fastforward.js ./module.json
 
     - name: Release 
       id: release
       uses: ncipollo/release-action@v1
       with:
-        allowUpdates: true
         name: Release v${{steps.get-version.outputs.version}}
+        tag: ${{steps.get-version.outputs.version}}
+        artifacts: "module-v${{steps.get-version.outputs.version}}.zip, module.json"
+        allowUpdates: true
         draft: false
         prerelease: false
-        token: ${{secrets.GITHUB_TOKEN}}
-        tag: ${{steps.get-version.outputs.version}}
 
