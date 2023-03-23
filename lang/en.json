@@ -1,5 +1,15 @@
 {
-    "AUTO-FAST":{
-        
+    "AUTO-FAST": {
+
+        "gen": {
+            "patch" : "Patching"
+        },
+
+        "settings": {
+            "auto-fastforward": {
+                "title": "Auto Fast Forward Rolls?",
+                "hint": "Requires Reload. Enable to reverse default roll behaviour. When enabled: All rolls are fast forwarded and shift with bring up the roll prompt."
+            }
+        }
     }
 }

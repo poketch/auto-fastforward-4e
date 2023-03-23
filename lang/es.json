@@ -1,0 +1,16 @@
+
+{
+    "AUTO-FAST": {
+
+        "gen": {
+            "patch" : "Actualizando"
+        },
+
+        "settings": {
+            "auto-fastforward": {
+                "title": "¿Activar tiradas rápidas?",
+                "hint": "Reinicio requerido. Habilita para invertir el acción de tirada normal. Cuand Habilitado: Todas las tirads son rapidas y SHIFT hace una tirada lenta."
+            }
+        }
+    }
+}
