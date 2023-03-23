@@ -1,0 +1,35 @@
+
+name: Module Release
+
+on:
+  push: 
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+        name: Get-Version
+        shell: bash
+        id: get-version
+        run: echo "::set-output name=version::$(node ./.github/workflows/get-version.js)"
+
+        name: Zip-Files
+        id: zip-files
+        working-directory: ./
+        run: zip -r module.zip ./lang ./module ./auto-fastforward.js LICENSE module.json
+
+        name: Create-Release
+        id: create-relase
+        uses: ncipollo/release-action@v1
+        with: 
+          allowUpdates: true
+          name: Release ${{ steps.get-version.outputs.version }}
+          draft: false
+          prerelease: false
+          token: ${{secrets.GITHUB_TOKEN}}
+          artifacts: ./module.json module-v${{ steps.get-version.outputs.version }}.zip
+          tag: ${{ steps.get-version.outputs.version }}
